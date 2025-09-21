@@ -20,7 +20,7 @@ font = pygame.font.SysFont("consolas", 16)
 # ========================
 rangoSim= 50000
 rangoHorario = 18
-lambdas = 1/60
+lambda_ = 1/60
 
 for simulacion in range(rangoSim):  
     id=1
@@ -48,7 +48,7 @@ for simulacion in range(rangoSim):
         fila_aviones.sort()
 
         # 2) posible nuevo avión
-        nuevo_detectado = np.random.binomial(1, p) 
+        nuevo_detectado = np.random.binomial(1, lambda_) 
         if nuevo_detectado==1:
             a = Avion(id, 300*1.852, 100*1.852, 4, 23.4, None, False, False, 0.0)
             id+=1
@@ -91,6 +91,4 @@ for simulacion in range(rangoSim):
 
 pygame.quit()
 
-if __name__ == "__main__":
-    main()
 

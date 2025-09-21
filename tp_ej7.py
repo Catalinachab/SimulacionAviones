@@ -61,7 +61,7 @@ for p in lambdas:
     cant_retraso_por_hora =  np.zeros((rangoSim, rangoHorario))
 
     for simulacion in range(rangoSim):  
-        print("arranca simulacion numero:", simulacion)
+        
         id=1
         fila_aviones: List[Avion] = []
         acc_time = 0
@@ -72,8 +72,7 @@ for p in lambdas:
         prev_cong_size = 0
         acum_atraso=0
         for m in range(round(rangoHorario/(1/60))):
-            print("-"*100)
-            print("minuto: ", m)
+            
             # 1) actualizar todos
             llegados=[]
             for avion in fila_aviones:

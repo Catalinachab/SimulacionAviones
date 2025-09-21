@@ -70,11 +70,11 @@ def main():
     
     rows = [] 
     runs = [
-        Path("ej_7/run_p=0.02_sim=100.json"),
-        Path("ej_7/run_p=0.1_sim=100.json"),
-        Path("ej_7/run_p=1_sim=100.json"),
-        Path("ej_7/run_p=0.2_sim=100.json"),
-        Path("ej_7/run_p=0.5_sim=100.json")
+        Path("plots/plots-ej5/run_p=0.02_sim=50000_conInterrupcion.json"),
+        Path("plots/plots-ej5/run_p=0.1_sim=50000_conInterrupcion.json"),
+        Path("plots/plots-ej5/run_p=1_sim=50000_conInterrupcion.json"),
+        Path("plots/plots-ej5/run_p=0.2_sim=50000_conInterrupcion.json"),
+        Path("plots/plots-ej5/run_p=0.5_sim=50000_conInterrupcion.json")
     ]
     for fp in runs:
         p, A, D, M, C, R = load_run(fp)
@@ -145,7 +145,7 @@ def main():
     print("\n=== RESUMEN POR λ (medias por hora ± error estándar) ===\n")
     print(df[cols_show])
 
-    with pd.ExcelWriter("plots/plots-ej4/resumen_lambda.xlsx", engine="openpyxl") as w:
+    with pd.ExcelWriter("plots/plots-ej5/resumen_lambda.xlsx", engine="openpyxl") as w:
         df.to_excel(w, index=False)
     print("\nGuardé resumen en resumen_lambda.xlsx")
 
@@ -157,7 +157,7 @@ def main():
     plt.ylabel("% de aviones con congestión")
     plt.title("Aviones con congestión vs λ")
     plt.grid(True)
-    plt.savefig("plots/plot_congestion_vs_lambda.png", bbox_inches="tight")
+    plt.savefig("plots/plots-ej5/plot_congestion_vs_lambda.png", bbox_inches="tight")
 
     # 1) Proba de que haya una congestion en cualquier hora
     plt.figure()
@@ -169,7 +169,7 @@ def main():
                 "Probabilidad de que una hora cualquiera tenga al menos un avión congestionado",
                 wrap=True, ha="center", fontsize=9)
     plt.grid(True)
-    plt.savefig("plots/plot_prob_congestion_vs_lambda.png", bbox_inches="tight")
+    plt.savefig("plots/plots-ej5/plot_prob_congestion_vs_lambda.png", bbox_inches="tight")
 
 
    # 3) % de aviones desviados a Montevideo vs λ
@@ -179,7 +179,7 @@ def main():
     plt.ylabel("% de aviones desviados a Montevideo")
     plt.title("Aviones desviados a Montevideo vs λ")
     plt.grid(True)
-    plt.savefig("plots/plot_mvd_vs_lambda.png", bbox_inches="tight")
+    plt.savefig("plots/plots-ej5/plot_mvd_vs_lambda.png", bbox_inches="tight")
 
 
    # 4) Atraso promedio por avión (min) vs λ
@@ -189,7 +189,7 @@ def main():
     plt.ylabel("Atraso promedio (min por avión llegado)")
     plt.title("Atraso promedio vs λ (respecto a 23.4 min sin congestión)")
     plt.grid(True)
-    plt.savefig("plots/plot_atraso_vs_lambda.png", bbox_inches="tight")
+    plt.savefig("plots/plots-ej5/plot_atraso_vs_lambda.png", bbox_inches="tight")
  
     print("\nExporté: plot_congestion_vs_lambda.png, plot_prob_congestion_vs_lambda.png, plot_mvd_vs_lambda.png")
     

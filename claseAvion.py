@@ -94,7 +94,7 @@ def calcular_tiempo_aep(avion):
     tiempo=0
     for i in range(avion.get_franja()):
         if i+1 == avion.get_franja():
-            print("velocidad del avion",avion.id , "velocidad: ",avion.get_velocidad())
+            
             tiempo += (((avion.get_distancia()-franjas[i])/avion.get_velocidad())*60)
         
         else:
