@@ -18,7 +18,7 @@ font = pygame.font.SysFont("consolas", 16)
 # ========================
 # PARÁMETROS DE SIMULACIÓN
 # ========================
-rangoSim= 50000
+rangoSim= 10000
 rangoHorario = 18
 lambda_ = 1/60
 
@@ -26,11 +26,8 @@ for simulacion in range(rangoSim):
     id=1
     fila_aviones: List[Avion] = []
     acc_time = 0
-    cant_detectados=0
-    fueron_a_montevideo=0
     ids_congestionados = set()   # guardamos todos los que ALGUNA VEZ bajaron vel (AEP o MVD)
-    prev_cong_size = 0
-    acum_atraso=0
+    
     for m in range(round(rangoHorario/(1/60))):
         # 1) actualizar todos
         llegados=[]
@@ -38,9 +35,8 @@ for simulacion in range(rangoSim):
             avion.actualizar()
             if avion.get_tiempoAep()==0 or avion.get_distancia()<=0:
                 avion.set_aterrizo(True)
-                acum_atraso+=max(0,avion.get_tiempo_viajado()-23.4)
                 llegados.append(avion)
-                cant_arribados+=1
+                
         
         for avion in llegados: 
             fila_aviones.remove(avion)
@@ -54,13 +50,13 @@ for simulacion in range(rangoSim):
             id+=1
             fila_aviones.append(a)
             fila_aviones.sort()
-            cant_detectados+=1   
+       
 
         # 3) reubicar si hace falta
         distancias, deben_ser_reubicados = calcular_dist_entre_aviones(fila_aviones) 
         pre_montevideo=len(fila_aviones)
         reubicar(fila_aviones, deben_ser_reubicados, ids_congestionados)
-        fueron_a_montevideo += (pre_montevideo-len(fila_aviones))
+        
         
         for idx, avion in enumerate(fila_aviones):
             avion.set_tiempo_viajado(avion.get_tiempo_viajado()+1)
@@ -83,7 +79,7 @@ for simulacion in range(rangoSim):
         screen.blit(font.render(f"Hora simulada: {hora_str}", True, (255,255,255)), (WIDTH-220, 20))
 
         pygame.display.flip()#para que se vea todo en la pantalla
-        clock.tick(30)  # para que no resfresque tan seguis y consuma mucha cpu
+        clock.tick(10)  # para que no resfresque tan seguis y consuma mucha cpu
 
         # avanzar tiempo simulado en 1 min
         acc_time += 1      

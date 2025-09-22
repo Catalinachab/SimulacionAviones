@@ -7,11 +7,6 @@ import json
 from pathlib import Path
 import sys
 
-"""
-Cosas para chequear: 
-    - chequear que el id esté bien
-    - ⁠ver bien las funciones que usamos para graficar, chequear que este todo bien y este tomando los datos bien.
-"""
 # ========================
 # GUARDADO
 # ========================

@@ -1,13 +1,8 @@
 
-'''
- Ejercicio 7
-    ideas: 
-    - Si hay congestion el avion q se detecta le seteas la vel en base al de adelante y si no la setes en la max      
-'''
+
 from typing import *
 from tools_visualizacion import *
 import random
-import pygame
 import numpy as np
 import json
 from pathlib import Path
@@ -40,12 +35,6 @@ def guardar_run_json(output_dir, params_dict,
 
     print(f"[OK] Guardado {file_path}")
 
-""" #visualizacion
-pygame.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("AEP – Simulación + Visualización")
-clock = pygame.time.Clock()
-font = pygame.font.SysFont("consolas", 16) """
 
 
 rangoSim= 50000
@@ -115,30 +104,7 @@ for p in lambdas:
                         avion.set_velocidad(max(fila_aviones[idx-1].get_velocidad(), minimo_de_franja(avion)))
                 elif (idx not in deben_ser_reubicados) and (avion.get_velocidad() >= 0):
                     avion.actualizar_velocidad()
-            
-            """  
-                #visualizacion
-                for e in pygame.event.get():
-                    if e.type == pygame.QUIT:
-                        pygame.display.quit()  # Cierra la ventana de visualización
-                        sys.exit()             # Termina la ejecución del programa
-
-                screen.fill((20, 22, 28)) #borra lo que había dibujado en el frame anterior
-                draw_marks(screen, font) #Traza marcas verticales en las posiciones de 5, 15, 50 y 100 millas náuticas.
-                
-                
-                draw_planes(screen, font, fila_aviones) #dibuja los aviones de la fila con su id, color segun velocidad,ect.
-
-                #para mostrar la hora
-                hora_str = format_time_hhmm(acc_time)
-                screen.blit(font.render(f"Hora simulada: {hora_str}", True, (255,255,255)), (WIDTH-220, 20))
-
-                pygame.display.flip()#para que se vea todo en la pantalla
-                clock.tick(10)  # para que no resfresque tan seguis y consuma mucha cpu
-
-                # avanzar tiempo simulado en 1 min
-                acc_time += 1 
-            """   
+               
 
             # 4) registrar por hora
             if (m+1) % 60 ==0:
@@ -173,4 +139,3 @@ for p in lambdas:
         cant_retraso_por_hora=cant_retraso_por_hora        
     ) 
 
-pygame.quit()

@@ -222,9 +222,8 @@ def guardar_run_json(output_dir, params_dict,
 
 rangoSim= 50000
 rangoHorario = 18
-#lambdas = [0.02, 0.1, 0.2, 0.5, 1]
-#lambdas = [ 0.2, 0.5, 1]
-lambdas = [0.02, 0.1, 1]
+lambdas = [0.02, 0.1, 0.2, 0.5, 1]
+
 
 for p in lambdas:
     print(lambdas)
